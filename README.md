@@ -236,7 +236,8 @@ Web 流：也被称为 Hybrid 技术，它基于 Web 相关技术来实现界面
 代码转换流：将某个语言转成 Objective-C、Java 或 C#，然后使用不同平台下的官方工具来开发
 
 java算法
-public static void selectsort(int[] arr) {
+
+    public static void selectsort(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < arr.length; j++) {
@@ -249,6 +250,7 @@ public static void selectsort(int[] arr) {
             arr[minIndex] = t;
         }
     }
+
     public static void insertsort(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = i + 1; j > 0; j--) {
@@ -260,6 +262,7 @@ public static void selectsort(int[] arr) {
             }
         }
     }
+
     public static void bubblesort(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = arr.length - 1; j > i; j--) {
@@ -271,6 +274,7 @@ public static void selectsort(int[] arr) {
             }
         }
     }
+
     public static int binarySearch(int[] arr, int target) {
         int start = 0;
         int end = arr.length - 1;
@@ -286,6 +290,7 @@ public static void selectsort(int[] arr) {
         }
         return -1;
     }
+
     public static int zhishusum(int start, int end) {
         int i, j;
         int sum = 0;
@@ -300,6 +305,7 @@ public static void selectsort(int[] arr) {
         }
         return sum;
     }
+
     public static long FBNQ(long n) {
         if (n == 1 || n == 2) {
             return 1;
@@ -307,45 +313,48 @@ public static void selectsort(int[] arr) {
         return FBNQ(n - 1) + FBNQ(n - 2);
     }
 
-ProgressBar计时10s代码:
-public class ProgressBarStu extends Activity {
-	private ProgressBar progressBar = null;
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.progressbar);
-		progressBar = (ProgressBar)findViewById(R.id.progressBar);
-		Thread thread = new Thread(new Runnable() {
-			public void run() {
-				int progressBarMax = progressBar.getMax();
-				try {
-					while(progressBarMax!=progressBar.getProgress())
-					{
-						int stepProgress = progressBarMax/10;
-						int currentprogress = progressBar.getProgress();
-						progressBar.setProgress(currentprogress+stepProgress);
-						Thread.sleep(1000);
-					}
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		thread.start();
-	}
+    ProgressBar计时10s代码:
 
-单例模式
-ublic class Singleton {
-    private static Singleton singleton;
+    public class ProgressBarStu extends Activity {
+        private ProgressBar progressBar = null;
 
-    private Singleton() {
-
-    }
-
-    public static synchronized Singleton getSingleton() {
-        if (singleton == null) {
-            singleton = new Singleton();
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.progressbar);
+            progressBar = (ProgressBar) findViewById(R.id.progressBar);
+            Thread thread = new Thread(new Runnable() {
+                public void run() {
+                    int progressBarMax = progressBar.getMax();
+                    try {
+                        while (progressBarMax != progressBar.getProgress()) {
+                            int stepProgress = progressBarMax / 10;
+                            int currentprogress = progressBar.getProgress();
+                            progressBar.setProgress(currentprogress + stepProgress);
+                            Thread.sleep(1000);
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            thread.start();
         }
 
-        return singleton;
-    }
-}
+        单例模式
+        ublic
+
+        class Singleton {
+            private static Singleton singleton;
+
+            private Singleton() {
+
+            }
+
+            public static synchronized Singleton getSingleton() {
+                if (singleton == null) {
+                    singleton = new Singleton();
+                }
+
+                return singleton;
+            }
+        }
