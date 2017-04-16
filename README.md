@@ -341,9 +341,8 @@ java算法
         }
 
         单例模式
-        ublic
 
-        class Singleton {
+        public class Singleton {
             private static Singleton singleton;
 
             private Singleton() {
