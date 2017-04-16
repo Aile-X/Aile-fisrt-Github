@@ -128,6 +128,9 @@ android 进行优化
 数据库使用完成后要记得关闭 cursor
 广播使用完之后要注销
 
+Android 线程通信有共享内存（变量）,文件，数据库,Handler,Java 里的 wait()，notify()，notifyAll()
+Android进程通信intent,Content Provider,广播（Broadcast）,AIDL服务
+
 内存泄漏和内存溢出
 内存泄漏 没用使用的对象一直没被GC,所以久了会累积导致最终内存溢出,例如数据库cusor没有关闭,io流没有关闭,没有及时recycle bitmap等.
 内存溢出 系统分配的内存不够了,例如图片加载会出现这个问题,解决方案就是变小加载,软引用加载
@@ -176,7 +179,6 @@ ListView通过lv.setSelection(listView.getPosition())方法定位到指定位置
 在 ScrollView 中如何嵌入 ListView最好方法是自定义 ListView，重载 onMeasure()方法，设置全部显示。
 ListView中图片错位的问题是由于convertview重用
 将SQLite数据库(dictionary.db文件)与apk文件一起发布,把这个文件放在/res/raw目录下即可
-Android 线程通信有共享内存（变量）,文件，数据库,Handler,Java 里的 wait()，notify()，notifyAll()
 发消息给UI线程更新UI,可以通过handelr,asyctask,runable
 在子线程中不能new handler,否则RuntimeException
 修改 Activity 进入和退出动画可以通过定义Activity的主题theme
@@ -185,6 +187,9 @@ android与服务器交互有对称加密和非对称加密,对称加密-DES,非�
 Android验证码登陆有服务器端获取图片,短信验证
 andorid应用第二次登录实现自动登录,把长效token保存到SharedPreferences
 可以把大文件通过post断点上传
+activity是phonwindow,phonewindow又是view
+view绘制流程为measure,layout,ondraw
+get是从指定的资源请求数据,post是向指定的资源提交要被处理的数据
 
 
 
@@ -213,6 +218,19 @@ finalize是Object类的一个方法，在垃圾收集器执行的时候会调用
 abstract class和interface
 abstract class可以定义和实现方法,其子类可以重用和不实现方法,
 interface 只能定义方法,其子类必须实现方法
+
+String，StringBuffer，StringBuilder
+1:速度方面的比较：StringBuilder >  StringBuffer  >  String
+2.单线程操作字符串缓冲区 下操作大量数据 = StringBuilder
+3.多线程操作字符串缓冲区 下操作大量数据 = StringBuffer
+
+Java GC 原理
+JVM的堆是Java对象的活动空间，程序中的类的对象从中分配空间,在堆中，找到已经无用的对象，并把这些对象占用的空间收回使其可以重新利用
+
+移动端跨平台开发
+Web 流：也被称为 Hybrid 技术，它基于 Web 相关技术来实现界面及功能：PhoneGap
+虚拟机流：通过将某个语言的虚拟机移植到不同平台上来运行 Android
+代码转换流：将某个语言转成 Objective-C、Java 或 C#，然后使用不同平台下的官方工具来开发
 
 java算法
 public static void selectsort(int[] arr) {
@@ -311,3 +329,20 @@ public class ProgressBarStu extends Activity {
 		});
 		thread.start();
 	}
+
+单例模式
+ublic class Singleton {
+    private static Singleton singleton;
+
+    private Singleton() {
+
+    }
+
+    public static synchronized Singleton getSingleton() {
+        if (singleton == null) {
+            singleton = new Singleton();
+        }
+
+        return singleton;
+    }
+}
