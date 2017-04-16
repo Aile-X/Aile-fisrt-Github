@@ -130,6 +130,9 @@ android 进行优化
 
 Android 线程通信有共享内存（变量）,文件，数据库,Handler,Java 里的 wait()，notify()，notifyAll()
 Android进程通信intent,Content Provider,广播（Broadcast）,AIDL服务
+一个 Android 程序开始运行时，会单独启动一个Proces,Activity或者Service都会跑在这个Process,但一个Process下却可以有许多个Thread。
+一个 Android 程序开始运行时，就有一个主线程Main Thread被创建,对于比较费时的工作，应该设法交给子线程去做
+Android UI操作并不是线程安全的并且这些操作必须在UI线程中执行。如果在子线程中直接修改UI，会导致异常。
 
 内存泄漏和内存溢出
 内存泄漏 没用使用的对象一直没被GC,所以久了会累积导致最终内存溢出,例如数据库cusor没有关闭,io流没有关闭,没有及时recycle bitmap等.
